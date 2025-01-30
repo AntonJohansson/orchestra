@@ -18,8 +18,10 @@ builds:
       configure: |
         mkdir -p "$BUILD_DIR"
         cd "$BUILD_DIR";
+        export PATH="$ORCHESTRA_ROOT/lib64/llvm/llvm/bin:$PATH";
         "$SOURCE_DIR/configure" \
-          --cc="(@= data.values.regular_c_compiler @)" \
+          --cc="$ORCHESTRA_ROOT/lib64/llvm/llvm/bin/clang" \
+          --cxx="$ORCHESTRA_ROOT/lib64/llvm/llvm/bin/clang++" \
           --prefix="$ORCHESTRA_ROOT" \
           --target-list=" \
             arm-linux-user \
